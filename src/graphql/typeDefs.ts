@@ -4,6 +4,7 @@ const typeDefs = gql`
   scalar DateTime
 
   type Product {
+    id: String
     name: String
     description: String
     price: Int
@@ -11,8 +12,19 @@ const typeDefs = gql`
     updated_at: DateTime
   }
 
+  input ProductInput {
+    name: String!
+    description: String!
+    price: Int!
+  }
+
   type Query {
+    product(id: String): Product
     products: [Product]
+  }
+
+  type Mutation {
+    saveProduct(product: ProductInput): Product
   }
 `;
 
