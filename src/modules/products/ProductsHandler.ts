@@ -1,20 +1,21 @@
 import { Product } from '../../entities/Product';
 import { ICreateProductDTO } from './dtos';
+import { pubsub, ADD_PRODUCT } from '../../graphql/pubsub';
 
 class ProductsHandler {
-  public async show(id: string): Promise<Product | undefined> {
+  public async getProduct(id: string): Promise<Product | undefined> {
     const product = await Product.findOne(id);
 
     return product;
   }
 
-  public async index(): Promise<Product[]> {
+  public async getProducts(): Promise<Product[]> {
     const products = await Product.find();
 
     return products;
   }
 
-  public async create({
+  public async addProduct({
     name,
     description,
     price,
@@ -26,6 +27,9 @@ class ProductsHandler {
     });
 
     await Product.save(product);
+    const products = await Product.find();
+
+    pubsub.publish(ADD_PRODUCT, { products });
 
     return product;
   }

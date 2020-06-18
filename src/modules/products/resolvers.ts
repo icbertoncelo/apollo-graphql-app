@@ -1,6 +1,7 @@
 import ProductsHandler from './ProductsHandler';
 import { ICreateProductDTO } from './dtos';
 import { Product } from '../../entities/Product';
+import { pubsub, ADD_PRODUCT } from '../../graphql/pubsub';
 
 const productsHandler = new ProductsHandler();
 
@@ -15,13 +16,21 @@ interface ICreateRequest {
 export default {
   Query: {
     product: (_: any, { id }: IShowRequest): Promise<Product | undefined> => {
-      return productsHandler.show(id);
+      return productsHandler.getProduct(id);
     },
-    products: productsHandler.index,
+    products: productsHandler.getProducts,
   },
   Mutation: {
-    saveProduct: (_: any, { product }: ICreateRequest): Promise<Product> => {
-      return productsHandler.create(product);
+    addProduct: (_: any, { product }: ICreateRequest): Promise<Product> => {
+      return productsHandler.addProduct(product);
+    },
+  },
+  Subscription: {
+    products: {
+      subscribe: () => pubsub.asyncIterator([ADD_PRODUCT]),
+      resolver: (payload: Array<Product>) => {
+        return payload;
+      },
     },
   },
 };

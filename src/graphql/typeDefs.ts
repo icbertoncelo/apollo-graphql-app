@@ -24,7 +24,11 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    saveProduct(product: ProductInput): Product
+    addProduct(product: ProductInput): Product
+  }
+
+  type Subscription {
+    products: [Product]
   }
 `;
 
