@@ -2,6 +2,7 @@ import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
   scalar DateTime
+  scalar Void
 
   type Product {
     id: String
@@ -25,6 +26,7 @@ const typeDefs = gql`
 
   type Mutation {
     addProduct(product: ProductInput): Product
+    deleteProduct(id: String): Void
   }
 
   type Subscription {
