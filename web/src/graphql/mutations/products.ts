@@ -5,3 +5,12 @@ export const DELETE_PRODUCT = gql`
     deleteProduct(id: $id)
   }
 `;
+
+export const ADD_PRODUCT = gql`
+  mutation AddProduct($product: ProductInput) {
+    addProduct(product: $product) {
+      id
+      name
+    }
+  }
+`;

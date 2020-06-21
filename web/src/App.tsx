@@ -12,6 +12,7 @@ import { WebSocketLink } from '@apollo/link-ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 
 import Routes from './routes';
+import GlobalStyle from './styles/global';
 
 const httpLink = new HttpLink({
   uri: 'http://localhost:3333/graphql',
@@ -48,6 +49,7 @@ const App = () => (
     <BrowserRouter>
       <Routes />
     </BrowserRouter>
+    <GlobalStyle />
   </ApolloProvider>
 );
 
