@@ -25,20 +25,23 @@ export const Form = styled.form`
     input {
       width: 100%;
       height: 46px;
+      padding: 16px;
       background: #232129;
       border-radius: 4px;
-      border: 2px solid #232129;
-      color: #666360;
-      padding: 16px;
-      width: 100%;
+      border: 0;
+      color: #f4ede8;
 
       & + input {
         margin-top: 8px;
       }
+
+      &::placeholder {
+        color: #666360;
+      }
     }
 
     button {
-      margin-top: 32px;
+      margin-top: 16px;
       width: 100%;
       height: 46px;
       background: #ff9000;
@@ -53,7 +56,6 @@ export const List = styled.ul`
   display: flex;
   flex: 1;
   flex-direction: column;
-  align-items: center;
 
   padding: 16px;
 `;

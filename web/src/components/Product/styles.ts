@@ -7,8 +7,11 @@ export const Container = styled.li`
   background: #f4ede8;
   color: #232129;
   border-radius: 4px;
-
   padding: 8px;
+
+  & + li {
+    margin-top: 8px;
+  }
 
   div {
     display: flex;

@@ -77,6 +77,8 @@ const Dashboard: React.FC = () => {
           product,
         },
       });
+
+      setFormValues({ name: '', description: '', price: '' });
     },
     [addProduct, formValues]
   );
@@ -91,18 +93,21 @@ const Dashboard: React.FC = () => {
           <h1>Cadastro de produtos</h1>
           <input
             type="text"
+            placeholder="Nome"
             name="name"
             value={formValues.name}
             onChange={handleChangeFormValue}
           />
           <input
             type="text"
+            placeholder="Descrição"
             name="description"
             value={formValues.description}
             onChange={handleChangeFormValue}
           />
           <input
             type="number"
+            placeholder="Preço"
             name="price"
             value={formValues.price}
             onChange={handleChangeFormValue}
